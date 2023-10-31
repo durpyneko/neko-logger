@@ -1,0 +1,28 @@
+{
+  "name": "@neko-logger/nekologger",
+  "version": "1.0.0",
+  "description": "custom logger for time, function name and context",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iDurpyDude12/neko-logger.git"
+  },
+  "keywords": [
+    "console",
+    "logging",
+    "logs"
+  ],
+  "author": "durpyneko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iDurpyDude12/neko-logger/issues"
+  },
+  "homepage": "https://github.com/iDurpyDude12/neko-logger#readme",
+  "devDependencies": {
+    "@types/node": "^20.8.10",
+    "typescript": "^5.2.2"
+  }
+}
