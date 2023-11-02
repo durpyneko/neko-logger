@@ -7,5 +7,7 @@ custom logger for time, function name and log message
 ![image](https://github.com/durpyneko/neko-logger/assets/89787577/57450fa0-4290-4cb8-9157-60b535a204d5)
 
 # Install
+> npm i nekologger
+
 https://www.npmjs.com/package/nekologger
 
