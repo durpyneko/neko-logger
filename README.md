@@ -7,7 +7,34 @@ custom logger for time, function name and log message
 ![image](https://github.com/durpyneko/neko-logger/assets/89787577/57450fa0-4290-4cb8-9157-60b535a204d5)
 
 # Install
-> npm i nekologger
-
+```
+$ npm install nekologger
+```
 https://www.npmjs.com/package/nekologger
 
+## Usage
+```js
+const neko = require("nekologger");
+```
+## Script
+1. Normal
+```js
+const neko = require("nekologger");
+
+neko.log({
+  functionName: "TEST",
+  logType: "info",
+  message: "Hello World!",
+});
+```
+
+2. Fancy
+```js
+const neko = require("nekologger").log;
+
+neko({
+  functionName: "TEST",
+  logType: "info",
+  message: "Hello World!",
+});
+```
