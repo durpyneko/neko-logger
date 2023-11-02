@@ -1,5 +1,5 @@
 # neko-logger
-custom logger for time, function name and message
+custom logger for time, function name and log message
 
 ## Preview
 ![image](https://github.com/durpyneko/neko-logger/assets/89787577/eb0f878e-c77a-41ad-a34d-f9715ef7c7ea)
