@@ -44,3 +44,15 @@ neko({
   message: "Hello World!",
 });
 ```
+You can also call 'log' something else
+```js
+import { log } from "nekologger";
+const neko = log;
+
+neko({
+  functionName: "TEST",
+  logType: "info",
+  message: "Hello World!",
+});
+```
+
