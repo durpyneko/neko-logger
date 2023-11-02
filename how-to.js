@@ -1,3 +1,7 @@
-const { neko_logger } = require("./index.js");
+const neko = require("nekologger");
 
-neko_logger({ functionName: "Test", logType: "info", message: "Hello World!" });
+neko.log({
+  functionName: "TEST",
+  logType: "info",
+  message: "Hello World!",
+});

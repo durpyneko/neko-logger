@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.neko_logger = void 0;
+exports.log = void 0;
 // Define color codes
 var blue = '\x1b[34m'; // Light blue 
 var magenta = '\x1b[35m'; // Magenta 
@@ -10,7 +10,7 @@ var white = '\x1b[37m'; // White
 var grey = '\x1b[30m'; // Grey for 'debug'
 var yellow = '\x1b[33m'; // Yellow for 'warn'
 var reset = '\x1b[0m'; // Reset color
-function neko_logger(options) {
+function log(options) {
     var functionName = options.functionName, logType = options.logType, message = options.message;
     var currentTime = new Date().toLocaleTimeString();
     // Create the formatted log message
@@ -21,4 +21,4 @@ function neko_logger(options) {
     var logString = "".concat(formattedTime, " ").concat(formattedFunctionName, " ").concat(formattedLogType, " ").concat(formattedMessage);
     console.log(logString);
 }
-exports.neko_logger = neko_logger;
+exports.log = log;

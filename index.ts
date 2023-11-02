@@ -14,7 +14,7 @@ const grey = '\x1b[30m'; // Grey for 'debug'
 const yellow = '\x1b[33m'; // Yellow for 'warn'
 const reset = '\x1b[0m'; // Reset color
 
-export function neko_logger(options: LogOptions): void {
+export function log(options: LogOptions): void {
   const { functionName, logType, message } = options;
   const currentTime = new Date().toLocaleTimeString();
 
