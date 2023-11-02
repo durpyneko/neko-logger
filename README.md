@@ -13,9 +13,15 @@ $ npm install nekologger
 https://www.npmjs.com/package/nekologger
 
 ## Usage
+CommonJS
 ```js
 const neko = require("nekologger");
 ```
+ES6
+```js
+import { log } from "nekologger";
+```
+
 ## Script
 1. Normal
 ```js
