@@ -1,6 +1,6 @@
 interface LogOptions {
-  functionName: string;
-  logType: 'info' | 'error';
+  name: string;
+  type: 'info' | 'error';
   message: string;
 }
 
@@ -15,17 +15,17 @@ const yellow = '\x1b[33m'; // Yellow for 'warn'
 const reset = '\x1b[0m'; // Reset color
 
 export function log(options: LogOptions): void {
-  const { functionName, logType, message } = options;
+  const { name, type, message } = options;
   const currentTime = new Date().toLocaleTimeString();
 
   // Create the formatted log message
   const formattedTime = `${blue}[${currentTime}]${reset}`;
-  const formattedFunctionName = `${magenta}[${functionName}]${reset}`;
-  const formattedLogType =
-    logType === 'info' ? `${green}[${logType}]${reset}` : `${red}[${logType}]${reset}`;
+  const formattedFunctionName = `${magenta}[${name}]${reset}`;
+  const formattedtype =
+    type === 'info' ? `${green}[${type}]${reset}` : `${red}[${type}]${reset}`;
   const formattedMessage = `${white}${message}${reset}`;
 
-  const logString = `${formattedTime} ${formattedFunctionName} ${formattedLogType} ${formattedMessage}`;
+  const logString = `${formattedTime} ${formattedFunctionName} ${formattedtype} ${formattedMessage}`;
 
   console.log(logString);
 }
