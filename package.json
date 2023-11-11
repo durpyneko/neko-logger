@@ -1,6 +1,6 @@
 {
   "name": "nekologger",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "custom logger for time, function name and log message",
   "main": "index.js",
   "scripts": {
