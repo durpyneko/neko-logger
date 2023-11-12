@@ -28,8 +28,8 @@ import { log } from "nekologger";
 const neko = require("nekologger");
 
 neko.log({
-  functionName: "TEST",
-  logType: "info",
+  name: "TEST",
+  type: "info",
   message: "Hello World!",
 });
 ```
@@ -39,8 +39,8 @@ neko.log({
 const neko = require("nekologger").log;
 
 neko({
-  functionName: "TEST",
-  logType: "info",
+  name: "TEST",
+  type: "info",
   message: "Hello World!",
 });
 ```
@@ -50,8 +50,8 @@ import { log } from "nekologger";
 const neko = log;
 
 neko({
-  functionName: "TEST",
-  logType: "info",
+  name: "TEST",
+  type: "info",
   message: "Hello World!",
 });
 ```
