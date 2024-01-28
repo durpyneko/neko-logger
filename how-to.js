@@ -1,7 +1,6 @@
-const neko = require("nekologger");
+const neko = require('neko-logger')
 
-neko.log({
-  functionName: "TEST",
-  logType: "info",
-  message: "Hello World!",
-});
+neko.log('This is a log message.')
+neko.error('This is an error message.');
+neko.warn('This is a warning message.');
+neko.info('This is an info message.');
