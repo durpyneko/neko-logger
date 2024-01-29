@@ -5,7 +5,7 @@
 
 
 ## Preview
-![image](https://github.com/durpyneko/neko-logger/assets/89787577/6648fd3d-8427-4840-9f9e-9b23663e325e)
+![image](https://github.com/durpyneko/neko-logger/assets/89787577/62830e9f-b810-43ac-8f36-931c18f6eea8)
 
 # Install
 ```
@@ -27,7 +27,6 @@ const neko = new Logger({
 
 ## TODO
 - [ ] toggle function name truncation
-- [ ] change msg color > .color("magenta")
 
 ## INFO
 Background image: [Pixiv](https://www.pixiv.net/en/artworks/96441490) / [Catbox](https://files.catbox.moe/shsurd.png)
