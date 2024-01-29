@@ -110,7 +110,7 @@ class Logger {
     print(logType, logColor) {
         const timestamp = this.showTime ? `[${time()}] ` : '';
         const truncatedName = this.showFunc && this.logName !== 'NONE'
-            ? `${c.magenta}[${(this.logName || 'UNDEF').substring(0, 5)}]${c.reset} `  // Truncate to 5 characters
+            ? `${c.magenta}[${(this.logName || 'UNDEF').substring(0, 5)}]${c.reset} `
             : '';
         const typePart = this.showLogTypes ? `[${logType}]${c.reset} ` : '';
         const message = this.logMessage ?
