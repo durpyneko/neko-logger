@@ -3,9 +3,13 @@ const neko = new Logger({
     showFunc: true,
     showLogTypes: true,
     showTime: true,
+    truncateNames: true,
+    truncationLen: 10,
+    hideNoNames: true,
+    funcAndTypeSameLen: false,
 });
 
-neko.log("Hello World!")
+neko.name('FuncName').log("Hello World!")
 neko.info("This is a INFO message.")
 neko.name("NONE").info("This is a INFO message without UNDEF name")
 neko.color("yellow").warn("This is a WARN message in yellow.")
