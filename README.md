@@ -29,7 +29,9 @@ const neko = new Logger({
 - [ ] toggle function name truncation
 - [ ] change msg color > .color("magenta")
 
-## NOTE
+## INFO
 Background image: [Pixiv](https://www.pixiv.net/en/artworks/96441490) / [Catbox](https://files.catbox.moe/shsurd.png)
 
-VSC Extension: https://github.com/KatsuteDev/Background/
+VSC Extension: [Background](https://github.com/KatsuteDev/Background/)
+
+VSC Theme: [Omni Owl](https://github.com/guilhermerodz/omni-owl)
