@@ -36,7 +36,6 @@ neko.name("Hello World!").color("magenta").info("Hello world message")
 [how-to.js](https://github.com/durpyneko/neko-logger/blob/main/how-to.js)
 
 ## TODO
-- [ ] set truncation lenght
 - [ ] toggle function name truncation
 
 ## INFO
