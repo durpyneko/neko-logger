@@ -9,7 +9,7 @@
 
 # Install
 ```
-$ npm install nekologger
+$ npm i nekologger
 ```
 https://www.npmjs.com/package/nekologger
 
