@@ -109,13 +109,13 @@ class Logger {
      */
     print(logType, logColor) {
         const timestamp = this.showTime ? `[${time()}] ` : '';
-        const truncatedName = this.showFunc && this.logName !== 'NONE'
+        const name = this.showFunc && this.logName !== 'NONE'
             ? `${c.magenta}[${(this.logName || 'UNDEF').substring(0, 5)}]${c.reset} `
             : '';
-        const typePart = this.showLogTypes ? `[${logType}]${c.reset} ` : '';
+        const type = this.showLogTypes ? `[${logType}]${c.reset} ` : '';
         const message = this.logMessage ?
-            `${timestamp}${truncatedName}${logColor}${typePart}${c.reset}${this.logMessage}` :
-            `${timestamp}${truncatedName}${logColor}${typePart}${c.reset}${this.logName}`;
+            `${timestamp}${name}${logColor}${type}${c.reset}${this.logMessage}` :
+            `${timestamp}${name}${logColor}${type}${c.reset}${this.logName}`;
         console.log(message);
 
         // reset state after logging
