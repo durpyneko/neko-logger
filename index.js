@@ -69,8 +69,7 @@ class Logger {
      * @returns {Logger} - The Logger instance for chaining.
      */
     log(logMessage) {
-        this.logMessage = logMessage;
-        this.print('MISC', c.grey, this.msgColor);
+        this.print('MISC', c.grey, this.msgColor, logMessage);
         return this;
     }
 
@@ -80,8 +79,7 @@ class Logger {
      * @returns {Logger} - The Logger instance for chaining.
      */
     error(logMessage) {
-        this.logMessage = logMessage;
-        this.print('ERRR', c.red, this.msgColor);
+        this.print('ERRR', c.red, this.msgColor, logMessage);
         return this;
     }
 
@@ -91,8 +89,7 @@ class Logger {
      * @returns {Logger} - The Logger instance for chaining.
      */
     warn(logMessage) {
-        this.logMessage = logMessage;
-        this.print('WARN', c.yellow, this.msgColor);
+        this.print('WARN', c.yellow, this.msgColor, logMessage);
         return this;
     }
 
@@ -102,14 +99,12 @@ class Logger {
      * @returns {Logger} - The Logger instance for chaining.
      */
     info(logMessage) {
-        this.logMessage = logMessage;
-        this.print('INFO', c.green, this.msgColor);
+        this.print('INFO', c.green, this.msgColor, logMessage);
         return this;
     }
     /**
      * Message color
      * @param {string} msgColor - The color to log the message in.
-     * @description Available colors: blue, magenta, green, red, white, grey, yellow
      * @returns {Logger} - The Logger instance for chaining.
      */
     color(msgColor) {
@@ -130,16 +125,17 @@ class Logger {
      * @param {string} logType - The log type (e.g., MISC, ERROR, WARN, INFO).
      * @param {string} typeColor - The color for log type.
      * @param {string} msgColor - The color for log message.
+     * @param {string} logMessage - The message to log.
      */
-    print(logType, typeColor, msgColor) {
+    print(logType, typeColor, msgColor, logMessage) {
         const timestamp = this.showTime ? `[${time()}] ` : '';
         const name = this.showFunc && this.logName !== 'NONE'
             ? `${c.magenta}[${(this.logName || 'UNDEF').substring(0, 5).padEnd(5, (this.logName || 'UNDEF').charAt((this.logName || 'UNDEF').length - 1))}]${c.reset} `
             : '';
         const type = this.showLogTypes ? `${typeColor || c.reset}[${logType}]${c.reset} ` : '';
-        const message = this.logMessage ?
-            `${c.reset}${timestamp}${name}${type}${msgColor || c.reset}${this.logMessage}${c.reset}` :
-            `${c.reset}${timestamp}${name}${type}${msgColor || c.reset}${this.logName}${c.reset}`;
+        const message = logMessage ?
+            `${c.reset}${timestamp}${name}${type}${msgColor || c.reset}${logMessage}${c.reset}` :
+            `${c.reset}${timestamp}${name}${type}${msgColor || c.reset}${logName}${c.reset}`;
         console.log(message);
 
         // reset state after logging
