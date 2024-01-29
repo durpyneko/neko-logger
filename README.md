@@ -1,10 +1,11 @@
-# neko-logger
-custom logger for time, function name and log message
+<div align="center">
+  <img alt="logo" src="https://github.com/durpyneko/neko-logger/assets/89787577/c20b6932-936c-4f40-a335-9e79bc0687e9">
+  <h3>a custom javascript console logger</h3>
+</div>
+
 
 ## Preview
-![image](https://github.com/durpyneko/neko-logger/assets/89787577/1ae3dc33-bc86-49c8-8802-89360fa19ee3)
-
-![image](https://github.com/durpyneko/neko-logger/assets/89787577/57450fa0-4290-4cb8-9157-60b535a204d5)
+![image](https://github.com/durpyneko/neko-logger/assets/89787577/6648fd3d-8427-4840-9f9e-9b23663e325e)
 
 # Install
 ```
@@ -12,47 +13,23 @@ $ npm install nekologger
 ```
 https://www.npmjs.com/package/nekologger
 
-## Usage
+## Usage / Quickstart
 CommonJS
 ```js
-const neko = require("nekologger");
-```
-ES6
-```js
-import { log } from "nekologger";
-```
-
-## Script
-1. Normal
-```js
-const neko = require("nekologger");
-
-neko.log({
-  name: "TEST",
-  type: "info",
-  message: "Hello World!",
+const Logger = require("nekologger")
+const neko = new Logger({
+    showFunc: true,
+    showLogTypes: true,
+    showTime: true,
 });
 ```
+[how-to.js](https://github.com/durpyneko/neko-logger/blob/main/how-to.js)
 
-2. Fancy
-```js
-const neko = require("nekologger").log;
+## TODO
+- [ ] toggle function name truncation
+- [ ] change msg color > .color("magenta")
 
-neko({
-  name: "TEST",
-  type: "info",
-  message: "Hello World!",
-});
-```
-You can also call 'log' something else
-```js
-import { log } from "nekologger";
-const neko = log;
+## NOTE
+Background image: [Pixiv](https://www.pixiv.net/en/artworks/96441490) / [Catbox](https://files.catbox.moe/shsurd.png)
 
-neko({
-  name: "TEST",
-  type: "info",
-  message: "Hello World!",
-});
-```
-
+VSC Extension: https://github.com/KatsuteDev/Background/
