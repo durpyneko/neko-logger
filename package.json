@@ -1,0 +1,27 @@
+{
+  "name": "nekologger",
+  "version": "3.0.0",
+  "description": "custom javascript console logger",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/durpyneko/neko-logger.git"
+  },
+  "keywords": [
+    "logger",
+    "console",
+    "console-logger",
+    "logging",
+    "log",
+    "logs"
+  ],
+  "author": "durpyneko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/durpyneko/neko-logger/issues"
+  },
+  "homepage": "https://github.com/durpyneko/neko-logger#readme"
+}
