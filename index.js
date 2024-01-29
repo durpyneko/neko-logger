@@ -15,7 +15,10 @@ class Logger {
      * @param {boolean} [options.showFunc=true] - Whether to show function names in logs.
      * @param {boolean} [options.showLogTypes=true] - Whether to show log types like [INFO], [WARN], etc.
      * @param {boolean} [options.showTime=true] - Whether to show timestamps.
+     * @param {boolean} [options.truncateNames=true] - Whether to truncate function names
      * @param {number} [options.truncationLen=5] - The length until function name truncation
+     * @param {boolean} [options.hideNoNames=false] - Whether to hide not named functions
+     * @param {boolean} [options.funcAndTypeSameLen=false] - Whether functions and types should be the same length
      */
     constructor(options = {}) {
         /**
@@ -37,10 +40,26 @@ class Logger {
         this.showTime = options.showTime !== undefined ? options.showTime : true;
 
         /**
-         * How long until function name trunation
+         * How long until function name truncation
          * @type {number}
          */
         this.truncationLen = options.truncationLen !== undefined ? options.truncationLen : 5;
+
+        /**
+         * Whether to truncate function names
+         * @type {boolean}
+         */
+        this.truncateNames = options.truncateNames !== undefined ? options.truncateNames : true;
+        /**
+         * Whether to hide not named functions
+         * @type {boolean}
+         */
+        this.hideNoNames = options.hideNoNames !== undefined ? options.hideNoNames : false;
+        /**
+         * Whether functions and types should be the same length
+         * @type {boolean}
+         */
+        this.funcAndTypeSameLen = options.funcAndTypeSameLen !== undefined ? options.funcAndTypeSameLen : false;
 
         /**
          * Current log name.
@@ -76,7 +95,14 @@ class Logger {
      * @returns {Logger} - The Logger instance for chaining.
      */
     log(logMessage) {
-        this.print('MISC', c.grey, this.msgColor, logMessage);
+        this.print(
+            this.funcAndTypeSameLen
+                ? truncateAndPad('MISC', this.truncationLen)
+                : 'MISC',
+            c.grey,
+            this.msgColor,
+            logMessage
+        );
         return this;
     }
 
@@ -86,17 +112,31 @@ class Logger {
      * @returns {Logger} - The Logger instance for chaining.
      */
     error(logMessage) {
-        this.print('ERRR', c.red, this.msgColor, logMessage);
+        this.print(
+            this.funcAndTypeSameLen
+                ? truncateAndPad('ERRR', this.truncationLen)
+                : 'ERRR',
+            c.red,
+            this.msgColor,
+            logMessage
+        );
         return this;
     }
 
     /**
-     *WARN type.
+     * WARN type.
      * @param {string} logMessage - The warning message to log.
      * @returns {Logger} - The Logger instance for chaining.
      */
     warn(logMessage) {
-        this.print('WARN', c.yellow, this.msgColor, logMessage);
+        this.print(
+            this.funcAndTypeSameLen
+                ? truncateAndPad('WARN', this.truncationLen)
+                : 'WARN',
+            c.yellow,
+            this.msgColor,
+            logMessage
+        );
         return this;
     }
 
@@ -106,7 +146,14 @@ class Logger {
      * @returns {Logger} - The Logger instance for chaining.
      */
     info(logMessage) {
-        this.print('INFO', c.green, this.msgColor, logMessage);
+        this.print(
+            this.funcAndTypeSameLen
+                ? truncateAndPad('INFO', this.truncationLen)
+                : 'INFO',
+            c.green,
+            this.msgColor,
+            logMessage
+        );
         return this;
     }
     /**
@@ -136,9 +183,13 @@ class Logger {
      */
     print(logType, typeColor, msgColor, logMessage) {
         const timestamp = this.showTime ? `[${time()}] ` : '';
-        const name = this.showFunc && this.logName !== 'NONE'
-            ? `${c.magenta}[${(this.logName || 'UNDEF').substring(0, this.truncationLen).padEnd(this.truncationLen, (this.logName || 'UNDEF').charAt((this.logName || 'UNDEF').length - 1))}]${c.reset} `
-            : '';
+        // This ternary is getting scarily long ngl
+        const name =
+            (!this.logName && this.hideNoNames || this.logName === 'NONE')
+                ? ''
+                : (this.truncateNames
+                    ? `${c.magenta}[${(this.logName || 'UNDEF').substring(0, this.truncationLen).padEnd(this.truncationLen, (this.logName || 'UNDEF').charAt((this.logName || 'UNDEF').length - 1))}]${c.reset} `
+                    : `${c.magenta}[${this.logName || 'UNDEF'}]${c.reset} `);
         const type = this.showLogTypes ? `${typeColor || c.reset}[${logType}]${c.reset} ` : '';
         const message = logMessage ?
             `${c.reset}${timestamp}${name}${type}${msgColor || c.reset}${logMessage}${c.reset}` :
@@ -158,6 +209,9 @@ class Logger {
  */
 function time() {
     return `${c.white}${new Date().toLocaleTimeString()}${c.reset}`;
+}
+function truncateAndPad(str, length) {
+    return str.substring(0, length).padEnd(length, str.charAt(str.length - 1))
 }
 
 module.exports = Logger;   
