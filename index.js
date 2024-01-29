@@ -46,6 +46,11 @@ class Logger {
          * @type {string|null}
          */
         this.logMessage = null;
+        /**
+         * Log message color
+         * @type {string|null}
+         */
+        this.msgColor = null;
     }
 
     /**
@@ -59,68 +64,88 @@ class Logger {
     }
 
     /**
-     * Log a message with the MISC type.
+     * MISC type.
      * @param {string} logMessage - The message to log.
      * @returns {Logger} - The Logger instance for chaining.
      */
     log(logMessage) {
         this.logMessage = logMessage;
-        this.print('MISC', c.grey);
+        this.print('MISC', c.grey, this.msgColor);
         return this;
     }
 
     /**
-     * Log an error message with the ERRR type.
+     * ERROR type.
      * @param {string} logMessage - The error message to log.
      * @returns {Logger} - The Logger instance for chaining.
      */
     error(logMessage) {
         this.logMessage = logMessage;
-        this.print('ERRR', c.red);
+        this.print('ERRR', c.red, this.msgColor);
         return this;
     }
 
     /**
-     * Log a warning message with the WARN type.
+     *WARN type.
      * @param {string} logMessage - The warning message to log.
      * @returns {Logger} - The Logger instance for chaining.
      */
     warn(logMessage) {
         this.logMessage = logMessage;
-        this.print('WARN', c.yellow);
+        this.print('WARN', c.yellow, this.msgColor);
         return this;
     }
 
     /**
-     * Log an informational message with the INFO type.
-     * @param {string} logMessage - The informational message to log.
+     * INFO type.
+     * @param {string} logMessage - The info message to log.
      * @returns {Logger} - The Logger instance for chaining.
      */
     info(logMessage) {
         this.logMessage = logMessage;
-        this.print('INFO', c.green);
+        this.print('INFO', c.green, this.msgColor);
         return this;
+    }
+    /**
+     * Message color
+     * @param {string} msgColor - The color to log the message in.
+     * @description Available colors: blue, magenta, green, red, white, grey, yellow
+     * @returns {Logger} - The Logger instance for chaining.
+     */
+    color(msgColor) {
+        if (c[msgColor]) {
+            this.msgColor = c[msgColor];
+        } else {
+            console.warn(`Invalid color: ${msgColor}. Available colors: ${this.availableColors()}`);
+        }
+        return this;
+    }
+
+    availableColors() {
+        return Object.keys(c).join(', ');
     }
 
     /**
      * Print the log message to the console.
      * @param {string} logType - The log type (e.g., MISC, ERROR, WARN, INFO).
-     * @param {string} logColor - The color code for log type.
+     * @param {string} typeColor - The color for log type.
+     * @param {string} msgColor - The color for log message.
      */
-    print(logType, logColor) {
+    print(logType, typeColor, msgColor) {
         const timestamp = this.showTime ? `[${time()}] ` : '';
         const name = this.showFunc && this.logName !== 'NONE'
-            ? `${c.magenta}[${(this.logName || 'UNDEF').substring(0, 5)}]${c.reset} `
+            ? `${c.magenta}[${(this.logName || 'UNDEF').substring(0, 5).padEnd(5, (this.logName || 'UNDEF').charAt((this.logName || 'UNDEF').length - 1))}]${c.reset} `
             : '';
-        const type = this.showLogTypes ? `[${logType}]${c.reset} ` : '';
+        const type = this.showLogTypes ? `${typeColor || c.reset}[${logType}]${c.reset} ` : '';
         const message = this.logMessage ?
-            `${timestamp}${name}${logColor}${type}${c.reset}${this.logMessage}` :
-            `${timestamp}${name}${logColor}${type}${c.reset}${this.logName}`;
+            `${c.reset}${timestamp}${name}${type}${msgColor || c.reset}${this.logMessage}${c.reset}` :
+            `${c.reset}${timestamp}${name}${type}${msgColor || c.reset}${this.logName}${c.reset}`;
         console.log(message);
 
         // reset state after logging
         this.logName = null;
         this.logMessage = null;
+        this.msgColor = null;
     }
 }
 
