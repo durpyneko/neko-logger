@@ -5,7 +5,7 @@
 
 
 ## Preview
-![image](https://github.com/durpyneko/neko-logger/assets/89787577/62830e9f-b810-43ac-8f36-931c18f6eea8)
+![image](https://github.com/durpyneko/neko-logger/assets/89787577/89fb00de-2bb7-4f81-82c7-d2d8869978c2)
 
 ### You can also chain them 🤔
 ![image](https://github.com/durpyneko/neko-logger/assets/89787577/6bf512b2-588a-4a48-88c0-d48fdafef83e)
