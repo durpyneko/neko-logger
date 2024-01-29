@@ -1,6 +1,6 @@
 {
   "name": "nekologger",
-  "version": "3.2.5",
+  "version": "3.2.6",
   "description": "custom javascript console logger",
   "main": "index.js",
   "scripts": {
