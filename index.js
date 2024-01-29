@@ -15,6 +15,7 @@ class Logger {
      * @param {boolean} [options.showFunc=true] - Whether to show function names in logs.
      * @param {boolean} [options.showLogTypes=true] - Whether to show log types like [INFO], [WARN], etc.
      * @param {boolean} [options.showTime=true] - Whether to show timestamps.
+     * @param {number} [options.truncationLen=5] - The lenght until function name truncation
      */
     constructor(options = {}) {
         /**
@@ -34,6 +35,12 @@ class Logger {
          * @type {boolean}
          */
         this.showTime = options.showTime !== undefined ? options.showTime : true;
+
+        /**
+         * How long until funtion name trunation
+         * @type {number}
+         */
+        this.truncationLen = options.truncationLen !== undefined ? options.truncationLen : 5;
 
         /**
          * Current log name.
@@ -130,7 +137,7 @@ class Logger {
     print(logType, typeColor, msgColor, logMessage) {
         const timestamp = this.showTime ? `[${time()}] ` : '';
         const name = this.showFunc && this.logName !== 'NONE'
-            ? `${c.magenta}[${(this.logName || 'UNDEF').substring(0, 5).padEnd(5, (this.logName || 'UNDEF').charAt((this.logName || 'UNDEF').length - 1))}]${c.reset} `
+            ? `${c.magenta}[${(this.logName || 'UNDEF').substring(0, this.truncationLen).padEnd(this.truncationLen, (this.logName || 'UNDEF').charAt((this.logName || 'UNDEF').length - 1))}]${c.reset} `
             : '';
         const type = this.showLogTypes ? `${typeColor || c.reset}[${logType}]${c.reset} ` : '';
         const message = logMessage ?
