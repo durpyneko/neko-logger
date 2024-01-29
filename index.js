@@ -15,7 +15,7 @@ class Logger {
      * @param {boolean} [options.showFunc=true] - Whether to show function names in logs.
      * @param {boolean} [options.showLogTypes=true] - Whether to show log types like [INFO], [WARN], etc.
      * @param {boolean} [options.showTime=true] - Whether to show timestamps.
-     * @param {number} [options.truncationLen=5] - The lenght until function name truncation
+     * @param {number} [options.truncationLen=5] - The length until function name truncation
      */
     constructor(options = {}) {
         /**
@@ -37,7 +37,7 @@ class Logger {
         this.showTime = options.showTime !== undefined ? options.showTime : true;
 
         /**
-         * How long until funtion name trunation
+         * How long until function name trunation
          * @type {number}
          */
         this.truncationLen = options.truncationLen !== undefined ? options.truncationLen : 5;
