@@ -184,11 +184,12 @@ class Logger {
     print(logType, typeColor, msgColor, logMessage) {
         const timestamp = this.showTime ? `[${time()}] ` : '';
         const name = () => {
+            if (this.showFunc === true) return ''
             if (!this.logName && (this.hideNoNames || this.logName === 'NONE')) return ''
             if (this.truncateNames) {
                 return `${c.magenta}[${truncateAndPad(this.logName, this.truncationLen)}]${c.reset} `
             } else {
-                return `${c.magenta}[${this.logName || 'UNDEF'}]${c.reset} `
+                return `${c.magenta}[${truncateAndPad(this.logName, this.truncationLen)}]${c.reset} `
             }
         }
         const type = this.showLogTypes ? `${typeColor || c.reset}[${logType}]${c.reset} ` : '';
@@ -212,7 +213,9 @@ function time() {
     return `${c.white}${new Date().toLocaleTimeString()}${c.reset}`;
 }
 function truncateAndPad(str, length) {
+    if (str === null) return '';
     return str.substring(0, length).padEnd(length, str.charAt(str.length - 1))
 }
+
 
 module.exports = Logger;   
