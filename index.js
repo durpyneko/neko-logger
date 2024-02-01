@@ -183,17 +183,18 @@ class Logger {
      */
     print(logType, typeColor, msgColor, logMessage) {
         const timestamp = this.showTime ? `[${time()}] ` : '';
-        // This ternary is getting scarily long ngl
-        const name =
-            (!this.logName && this.hideNoNames || this.logName === 'NONE')
-                ? ''
-                : (this.truncateNames
-                    ? `${c.magenta}[${(this.logName || 'UNDEF').substring(0, this.truncationLen).padEnd(this.truncationLen, (this.logName || 'UNDEF').charAt((this.logName || 'UNDEF').length - 1))}]${c.reset} `
-                    : `${c.magenta}[${this.logName || 'UNDEF'}]${c.reset} `);
+        const name = () => {
+            if (!this.logName && this.hideNoNames || this.logName === 'NONE') return ''
+            if (this.truncateNames) {
+                return `${c.magenta}[${truncateAndPad(this.logName, this.truncationLen)}]${c.reset} `
+            } else {
+                return `${c.magenta}[${this.logName || 'UNDEF'}]${c.reset} `
+            }
+        }
         const type = this.showLogTypes ? `${typeColor || c.reset}[${logType}]${c.reset} ` : '';
         const message = logMessage ?
-            `${c.reset}${timestamp}${name}${type}${msgColor || c.reset}${logMessage}${c.reset}` :
-            `${c.reset}${timestamp}${name}${type}${msgColor || c.reset}${logName}${c.reset}`;
+            `${c.reset}${timestamp}${name()}${type}${msgColor || c.reset}${logMessage}${c.reset}` :
+            `${c.reset}${timestamp}${name()}${type}${msgColor || c.reset}${logName}${c.reset}`;
         console.log(message);
 
         // reset state after logging
