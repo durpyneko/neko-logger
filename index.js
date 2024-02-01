@@ -184,7 +184,7 @@ class Logger {
     print(logType, typeColor, msgColor, logMessage) {
         const timestamp = this.showTime ? `[${time()}] ` : '';
         const name = () => {
-            if (!this.logName && this.hideNoNames || this.logName === 'NONE') return ''
+            if (!this.logName && (this.hideNoNames || this.logName === 'NONE')) return ''
             if (this.truncateNames) {
                 return `${c.magenta}[${truncateAndPad(this.logName, this.truncationLen)}]${c.reset} `
             } else {
